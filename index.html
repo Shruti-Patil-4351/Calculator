@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blue Calculator</title>
+
+<style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f2f2f2;
+    font-family: Arial, sans-serif;
+}
+
+/* Calculator body */
+.calculator {
+    background: #2196f3;
+    padding: 20px;
+    border-radius: 20px;
+    width: 260px;
+}
+
+/* Display */
+.display {
+    background: #e3f2fd;
+    height: 55px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 32px;
+    text-align: right;
+    padding: 10px;
+    border: none;
+    width: 100%;
+}
+
+/* Button grid */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+/* Common button style */
+button {
+    height: 55px;
+    font-size: 22px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #1976d2;
+    color: white;
+}
+
+/* Number buttons */
+.number {
+    background: #1565c0;
+}
+
+/* Operator buttons */
+.operator {
+    background: #0d47a1;
+}
+
+/* Equal button */
+.equal {
+    background: #0b3c91;
+    grid-row: span 2;
+}
+
+/* Hover effect */
+button:hover {
+    opacity: 0.9;
+}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" class="display" value="0" disabled>
+
+    <div class="buttons">
+        <button class="number">7</button>
+        <button class="number">8</button>
+        <button class="number">9</button>
+        <button class="operator">+</button>
+
+        <button class="number">4</button>
+        <button class="number">5</button>
+        <button class="number">6</button>
+        <button class="operator">-</button>
+
+        <button class="number">1</button>
+        <button class="number">2</button>
+        <button class="number">3</button>
+        <button class="equal">=</button>
+
+        <button class="number">0</button>
+    </div>
+</div>
+
+<script>
+const display = document.getElementById("display");
+const buttons = document.querySelectorAll("button");
+
+let input = "";
+
+buttons.forEach(button => {
+    button.addEventListener("click", () => {
+        const value = button.innerText;
+
+        if (value === "=") {
+            try {
+                input = eval(input).toString();
+                display.value = input;
+            } catch {
+                display.value = "Error";
+                input = "";
+            }
+        } else {
+            input += value;
+            display.value = input;
+        }
+    });
+});
+</script>
+
+</body>
+</html>
